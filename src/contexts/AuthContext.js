@@ -1,11 +1,11 @@
-import { DialerSip } from "@mui/icons-material";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 const initialState = {
   isAuthenticated: false,
-  isInitialize: false,
+  isInitialized: false,
   user: null,
 };
+
 const INITIALIZE = "INITIALIZE";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuthenticated,
-        isInitialize: true,
+        isInitialized: true,
         user,
       };
     case LOGIN_SUCCESS:
@@ -42,7 +42,38 @@ const AuthContext = createContext({ ...initialState });
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        const username = window.localStorage.getItem("username");
+
+        if (username) {
+          dispatch({
+            type: INITIALIZE,
+            payload: { isAuthenticated: true, user: { username } },
+          });
+        } else {
+          dispatch({
+            type: INITIALIZE,
+            payload: { isAuthenticated: false, user: null },
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        dispatch({
+          type: INITIALIZE,
+          payload: {
+            isAuthenticated: false,
+            user: null,
+          },
+        });
+      }
+    };
+    initialize();
+  }, []);
+
   const login = async (username, callback) => {
+    window.localStorage.setItem("username", username);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: { user: { username } },
@@ -51,6 +82,7 @@ function AuthProvider({ children }) {
   };
 
   const logout = async (callback) => {
+    window.localStorage.removeItem("username");
     dispatch({ type: LOGOUT });
     callback();
   };
