@@ -18,12 +18,11 @@ function MainHeader() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
-          >
+            sx={{ mr: 2 }}>
             <Logo />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
-            CoderStore
+            Xi Ngau Store
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Typography variant="h6" color="inherit" component="div">

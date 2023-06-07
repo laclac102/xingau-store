@@ -5,12 +5,12 @@ import {
 } from "@mui/material/styles";
 
 const PRIMARY = {
-  lighter: "#FFD07F",
-  light: "#FDA65D",
-  main: "#FF8243",
-  dark: "#E26A2C",
-  darker: "#cc571f",
-  contrastText: "#FFF",
+  lighter: "#b7e0f1",
+  light: "#AFD3E2",
+  main: "#100720",
+  dark: "#1795b7",
+  darker: "#117e9c",
+  contrastText: "#FB2576",
 };
 const SECONDARY = {
   lighter: "#D6E4FF",
