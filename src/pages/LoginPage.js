@@ -42,7 +42,7 @@ function LoginPage() {
         </Typography>
         <FTextField name="username" label="Username" />
 
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" color="secondary">
           Login
         </Button>
       </Stack>

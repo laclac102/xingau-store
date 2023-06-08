@@ -7,9 +7,14 @@ import IconButton from "@mui/material/IconButton";
 
 import Logo from "../components/Logo";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function MainHeader() {
+  const navigate = useNavigate();
+  const auth = useAuth();
   const { user } = useAuth();
+  console.log(auth);
   return (
     <Box>
       <AppBar position="static">
@@ -28,6 +33,15 @@ function MainHeader() {
           <Typography variant="h6" color="inherit" component="div">
             Welcome {user?.username}!
           </Typography>
+          <Button
+            variant="outlined"
+            color="inherit"
+            sx={{ marginLeft: "5px" }}
+            onClick={() => {
+              auth.logout(() => navigate("/"));
+            }}>
+            Sign out
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
