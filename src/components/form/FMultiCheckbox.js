@@ -1,9 +1,9 @@
-import { useFormContext, Controller } from "react-hook-form";
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 function FMultiCheckbox({ name, options, ...other }) {
   const { control } = useFormContext();
-
   return (
     <Controller
       name={name}
@@ -13,7 +13,6 @@ function FMultiCheckbox({ name, options, ...other }) {
           field.value.includes(option)
             ? field.value.filter((value) => value !== option)
             : [...field.value, option];
-
         return (
           <FormGroup>
             {options.map((option) => (
@@ -26,8 +25,7 @@ function FMultiCheckbox({ name, options, ...other }) {
                   />
                 }
                 label={option}
-                {...other}
-              />
+                {...other}></FormControlLabel>
             ))}
           </FormGroup>
         );

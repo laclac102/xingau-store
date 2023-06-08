@@ -49,7 +49,7 @@ function HomePage() {
     <Container sx={{ display: "flex", minHeight: "100vh", mt: 3 }}>
       <Stack>
         <FormProvider methods={methods}>
-          <ProductFilter resetFilter={reset} />
+          <ProductFilter resetFilter={() => reset(defaultValues)} />
         </FormProvider>
       </Stack>
       <Stack sx={{ flexGrow: 1 }}>
